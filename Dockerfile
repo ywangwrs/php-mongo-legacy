@@ -10,8 +10,11 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
 RUN docker-php-ext-install mbstring \
     && docker-php-ext-install mysql
 
+WORKDIR /var/www/html
+
+COPY index.php .
+
 RUN mkdir -p /data/src /data/discuz /data/phpbb /data/share \
-    && cd /var/www/html \
     && ln -s /data/src/forum . \
     && ln -s /data/src/ottawa . \
     && ln -s /data/discuz . \
