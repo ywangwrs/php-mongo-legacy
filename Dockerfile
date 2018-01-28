@@ -29,5 +29,6 @@ RUN mkdir -p /data/src /data/discuz /data/phpbb /data/share \
     && ln -s /data/src/forum . \
     && ln -s /data/src/ottawa . \
     && ln -s /data/discuz . \
+    && ln -s /data/discuz upload \
     && ln -s /data/share . \
     && ln -s /data/phpbb .
