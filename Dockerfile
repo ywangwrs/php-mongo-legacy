@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     libssl-dev \
     wget \
     vim \
-    php5-mysql
+    php5-mysql \
+    && apt-get clean
 
 RUN docker-php-ext-install mbstring \
     && docker-php-ext-install mysql
@@ -20,6 +21,17 @@ RUN wget https://pecl.php.net/get/mongo-1.6.16.tgz \
     && make install \
     #&& echo "extension=mongo.so" > /usr/local/etc/php/php.ini \
     && docker-php-ext-enable mongo
+
+# install phantomjs
+RUN apt-get update && apt-get install --yes --no-install-recommends \
+    libfreetype6 \
+    libfontconfig1 \
+    && apt-get clean \
+    && cd /tmp \
+    && wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+    && tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+    && mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin \
+    && rm -rf phantomjs*
 
 WORKDIR /var/www/html
 
