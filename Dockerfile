@@ -26,14 +26,13 @@ RUN wget https://pecl.php.net/get/mongo-1.6.16.tgz \
     #&& echo "extension=mongo.so" > /usr/local/etc/php/php.ini \
     && docker-php-ext-enable mongo
 
+COPY phantomjs-2.1.1-linux-x86_64.tar.bz2 /tmp
 # install phantomjs
-RUN apt-get -o Acquire::Check-Valid-Until=false update \
-    && apt-get install --yes --no-install-recommends \
+RUN apt-get install --yes --no-install-recommends \
     libfreetype6 \
     libfontconfig1 \
     && apt-get clean \
     && cd /tmp \
-    && wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
     && tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
     && mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin \
     && rm -rf phantomjs*
