@@ -37,6 +37,16 @@ RUN apt-get install --yes --no-install-recommends \
     && mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin \
     && rm -rf phantomjs*
 
+# install mutt
+RUN apt-get install --yes --no-install-recommends \
+    mutt \
+    && apt-get clean \
+    && mkdir /root/.mutt \
+    && chmod 777 /var/log \
+
+COPY colors /root/.mutt/
+COPY .muttrc /root/
+
 WORKDIR /var/www/html
 
 COPY index.php .
