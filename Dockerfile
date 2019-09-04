@@ -38,11 +38,12 @@ RUN apt-get install --yes --no-install-recommends \
     && rm -rf phantomjs*
 
 # install mutt
-RUN apt-get install --yes --no-install-recommends \
+RUN apt-get -o Acquire::Check-Valid-Until=false update \
+    && apt-get install --yes --no-install-recommends \
     mutt \
     && apt-get clean \
     && mkdir /root/.mutt \
-    && chmod 777 /var/log \
+    && chmod 777 /var/log
 
 COPY colors /root/.mutt/
 COPY .muttrc /root/
