@@ -42,11 +42,13 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install --yes --no-install-recommends \
     mutt \
     && apt-get clean \
-    && mkdir /root/.mutt \
+    && mkdir /var/www/.mutt \
     && chmod 777 /var/log
 
-COPY colors /root/.mutt/
-COPY .muttrc /root/
+COPY colors /var/www/.mutt/
+COPY .muttrc /var/www/
+
+RUN chown -R www-data:www-data /var/www/.mutt /var/www/.muttrc
 
 WORKDIR /var/www/html
 

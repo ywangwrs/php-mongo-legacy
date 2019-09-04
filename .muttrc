@@ -1,17 +1,17 @@
 # About Me
-set from = "user@mailbox.org"
-set realname = "User Name"
+set from = "yang.wang@thewisdom.org"
+set realname = "Yang Wang"
 set use_from = yes
 set envelope_from = yes
 
 # My credentials
-set imap_user = "user@mailbox.org"
-set smtp_url = "smtps://$imap_user@mail.mailbox.org:994/"
-set imap_pass=mypassword
+set imap_user = "yang.wang@thewisdom.org"
+set smtp_url = "smtps://yang.wang@thewisdom.org@mail.thewisdom.org:994/"
+set imap_pass=th8999Ge
 set smtp_pass=$imap_pass
 
 # My mailboxes
-set folder = "imaps://mail.mailbox.org:993"
+set folder = "imaps://mail.thewisdom.org:993"
 set spoolfile = "+INBOX"
 set record = "+INBOX/Sent"
 set postponed = "+INBOX/Drafts"
@@ -38,3 +38,6 @@ bind index "^" imap-fetch-mail
 #set 'index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s"'
 set index_format="%4C %Z %X %{%Y%m%d} %-15.15F %-15.15t %?M?(#%03M)&(%4c)? %?y?(%.20Y) ?%s"
 source ~/.mutt/colors
+
+# Address book
+set query_command = "mail-query '%s' ~/Mail"
