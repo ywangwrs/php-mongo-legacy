@@ -1,17 +1,17 @@
 # About Me
-set from = "yang.wang@thewisdom.org"
-set realname = "Yang Wang"
+set from = "abc@email.com"
+set realname = "Your Name"
 set use_from = yes
 set envelope_from = yes
 
 # My credentials
-set imap_user = "yang.wang@thewisdom.org"
-set smtp_url = "smtps://yang.wang@thewisdom.org@mail.thewisdom.org:994/"
-set imap_pass=th8999Ge
+set imap_user = "abc@email.com"
+set smtp_url = "smtps://<user_name>@email.com:994/"
+set imap_pass=<password>
 set smtp_pass=$imap_pass
 
 # My mailboxes
-set folder = "imaps://mail.thewisdom.org:993"
+set folder = "imaps://email.com:993"
 set spoolfile = "+INBOX"
 set record = "+INBOX/Sent"
 set postponed = "+INBOX/Drafts"
