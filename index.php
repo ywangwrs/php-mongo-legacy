@@ -5,7 +5,7 @@
                 $uri = 'http://';
         }   
         $uri .= $_SERVER['HTTP_HOST'];
-        header('Location: '.$uri.'/discuz/');
+        header('Location: '.$uri.'/sars/');
         exit;
 ?>
 

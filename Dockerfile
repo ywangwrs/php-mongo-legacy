@@ -41,6 +41,7 @@ RUN apt-get install --yes --no-install-recommends \
 RUN apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install --yes --no-install-recommends \
     mutt \
+    libsasl2-2 sasl2-bin libsasl2-modules \
     && apt-get clean \
     && mkdir /var/www/.mutt \
     && chmod 777 /var/log

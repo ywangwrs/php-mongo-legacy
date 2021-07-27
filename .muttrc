@@ -5,17 +5,17 @@ set use_from = yes
 set envelope_from = yes
 
 # My credentials
-set imap_user = "abc@email.com"
-set smtp_url = "smtps://<user_name>@email.com:994/"
-set imap_pass=<password>
+set imap_user = "USERNAME@gmail.com"
+set smtp_url = "smtps://USERNAME@gmail.com@smtp.gmail.com:465/"
+set imap_pass=APP_PASSWORD
 set smtp_pass=$imap_pass
 
 # My mailboxes
-set folder = "imaps://email.com:993"
+set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set record = "+INBOX/Sent"
 set postponed = "+INBOX/Drafts"
-set ssl_starttls=no
+set ssl_starttls=yes
 set ssl_force_tls=yes
 
 # Where to put the stuff
