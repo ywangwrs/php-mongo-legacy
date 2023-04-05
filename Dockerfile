@@ -7,7 +7,7 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update \
     wget \
     vim \
     mutt gpgsm gnupg-agent \
-    #php5-mysql \
+    && DEBIAN_FRONTEND=noninteractive apt-get --yes --assume-yes install cyrus-common \
     && apt-get clean
 
 RUN docker-php-ext-install mbstring \

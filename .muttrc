@@ -1,13 +1,14 @@
 # About Me
-set from = "abc@email.com"
-set realname = "Your Name"
+set from = "my_account@gmail.com"
+set realname = "First Last Name"
 set use_from = yes
 set envelope_from = yes
 
 # My credentials
-set imap_user = "USERNAME@gmail.com"
-set smtp_url = "smtps://USERNAME@gmail.com@smtp.gmail.com:465/"
-set imap_pass=APP_PASSWORD
+set imap_user = "my_account@gmail.com"
+set smtp_url = "smtps://my_account@gmail.com@smtp.gmail.com:465/"
+# Get from https://myaccount.google.com/u/1/apppasswords
+set imap_pass="16 chars app password"
 set smtp_pass=$imap_pass
 
 # My mailboxes
@@ -37,7 +38,6 @@ set editor = "vim"
 bind index "^" imap-fetch-mail
 #set 'index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s"'
 set index_format="%4C %Z %X %{%Y%m%d} %-15.15F %-15.15t %?M?(#%03M)&(%4c)? %?y?(%.20Y) ?%s"
-source ~/.mutt/colors
 
 # Address book
 set query_command = "mail-query '%s' ~/Mail"
