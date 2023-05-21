@@ -7,6 +7,7 @@ RUN apt-get update \
     libssl-dev \
     wget \
     vim \
+    ffmpeg \
     mutt gpgsm gnupg-agent \
     && DEBIAN_FRONTEND=noninteractive apt-get --yes --assume-yes install cyrus-common \
     && apt-get clean
@@ -35,19 +36,6 @@ RUN apt-get install --yes --no-install-recommends \
     && mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin \
     && rm -rf phantomjs*
 
-RUN mkdir /var/www/.mutt \
-    && chmod 777 /var/log
-COPY colors /var/www/.mutt/
-COPY .muttrc /var/www/
-COPY .htaccess /var/www/html/
-
-RUN chown -R www-data:www-data /var/www/.mutt /var/www/.muttrc
-
-# youtube-dl
-ADD yt-dlp /usr/bin/youtube-dl
-RUN apt-get install --yes --no-install-recommends ffmpeg \
-    && apt-get clean
-
 # Python3.9, google-api-python-client and pyshorteners
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
@@ -65,6 +53,16 @@ RUN apt-get update \
     && pip3.9 install --upgrade google-api-python-client \
     && python3.9 -m pip install --upgrade pip \
     && pip3.9 install --upgrade pyshorteners
+
+# youtube-dl
+ADD yt-dlp /usr/bin/youtube-dl
+
+RUN mkdir /var/www/.mutt \
+    && chmod 777 /var/log
+COPY colors /var/www/.mutt/
+COPY .muttrc /var/www/
+COPY .htaccess /var/www/html/
+RUN chown -R www-data:www-data /var/www/.mutt /var/www/.muttrc
 
 WORKDIR /var/www/html
 
