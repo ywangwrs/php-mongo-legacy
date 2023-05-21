@@ -1,7 +1,8 @@
-#FROM php:5.6.31-apache
 FROM php:5.6.40-apache
 
-RUN apt-get -o Acquire::Check-Valid-Until=false update \
+COPY sources.list /etc/apt/
+
+RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
     libssl-dev \
     wget \
@@ -41,6 +42,29 @@ COPY .muttrc /var/www/
 COPY .htaccess /var/www/html/
 
 RUN chown -R www-data:www-data /var/www/.mutt /var/www/.muttrc
+
+# youtube-dl
+ADD yt-dlp /usr/bin/youtube-dl
+RUN apt-get install --yes --no-install-recommends ffmpeg \
+    && apt-get clean
+
+# Python3.9, google-api-python-client and pyshorteners
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends \
+    build-essential libreadline-gplv2-dev libncursesw5-dev \
+    libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev \
+    && apt-get clean \
+    && wget --progress dot:giga https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz \
+    && tar xzf Python-3.9.16.tgz \
+    && cd Python-3.9.16 \
+    && ./configure --enable-optimizations \
+    && make altinstall \
+    && cd .. && rm -rf Python-3.9.16* \
+    && apt-get purge --yes build-essential \
+    && apt-get --yes autoremove \
+    && pip3.9 install --upgrade google-api-python-client \
+    && python3.9 -m pip install --upgrade pip \
+    && pip3.9 install --upgrade pyshorteners
 
 WORKDIR /var/www/html
 
