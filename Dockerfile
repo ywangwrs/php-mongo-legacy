@@ -15,7 +15,8 @@ RUN apt-get update \
 RUN docker-php-ext-install mbstring \
     && docker-php-ext-install mysql
 
-RUN wget https://pecl.php.net/get/mongo-1.6.16.tgz \
+COPY mongo-1.6.16.tgz /tmp/
+RUN cd /tmp \
     && tar xzf mongo-1.6.16.tgz \
     && cd mongo-1.6.16 \
     && phpize \
@@ -50,9 +51,9 @@ RUN apt-get update \
     && cd .. && rm -rf Python-3.9.16* \
     && apt-get purge --yes build-essential \
     && apt-get --yes autoremove \
-    && pip3.9 install --upgrade google-api-python-client \
+    && pip3.9 install --upgrade google-api-python-client google_auth_oauthlib \
     && python3.9 -m pip install --upgrade pip \
-    && pip3.9 install --upgrade pyshorteners
+    && pip3.9 install --upgrade pyshorteners pymongo
 
 # youtube-dl
 ADD yt-dlp /usr/bin/youtube-dl
